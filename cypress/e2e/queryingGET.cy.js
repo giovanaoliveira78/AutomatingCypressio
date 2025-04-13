@@ -18,6 +18,7 @@ describe('Find the list and click the save form button', () => {
   it('Should click on the save form button', () => {
     cy.get(ELEMENTS.saveFormButton)
       .contains('span', 'Save Form')
+      .click()
   })
 
   it('Should find the words on the list using cy.contains and attribute selector', () => {
@@ -36,5 +37,14 @@ describe('Find the list and click the save form button', () => {
     cy.get(ELEMENTS.list)
       .contains('more apples')
       .should('have.class', 'fourth')
+  })
+})
+
+describe('Find elements using .within', () => {
+  it('Should find email and password inputs inside the form', () => {
+    cy.get(ELEMENTS.form).within(() => {
+      cy.get('input:first').should('have.attr', 'placeholder', 'Email')
+      cy.get('input:last').should('have.attr', 'placeholder', 'Password')
+    })
   })
 })
