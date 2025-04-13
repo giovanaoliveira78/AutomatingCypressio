@@ -48,3 +48,12 @@ describe('Find elements using .within', () => {
     })
   })
 })
+
+describe('Find the elements using .root', () => {
+  it('Should validate global and scoped root elements', () => {
+    cy.root().should('match', 'html')
+    cy.get('.query-ul').within(() => {
+      cy.root().should('have.class', 'query-ul')
+    })
+  })
+})
